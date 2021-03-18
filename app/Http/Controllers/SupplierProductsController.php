@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Supplier_product;
+use Carbon\Carbon;
 
 class SupplierProductsController extends Controller
 {
@@ -14,6 +16,7 @@ class SupplierProductsController extends Controller
     public function index()
     {
         //
+        return Supplier_product::whereNull('deleted_at')->paginate(10);
     }
 
     /**
@@ -35,6 +38,11 @@ class SupplierProductsController extends Controller
     public function store(Request $request)
     {
         //
+        $sp=new Supplier_product();
+        $sp->supply_id=$request->supply_id;
+        $sp->product_id=$request->product_id;
+        $sp->save();
+        return $sp;
     }
 
     /**
@@ -46,7 +54,9 @@ class SupplierProductsController extends Controller
     public function show($id)
     {
         //
+        return Supplier_product::where('id',$id)->paginate(10);
     }
+
 
     /**
      * Show the form for editing the specified resource.

@@ -75,6 +75,18 @@ Route::prefix('orders_detail')->group(function(){
     ]);
 });
 
+Route::prefix('supplier_products')->group(function(){
+   
+    Route::get('/all',[
+        'uses'=>'SupplierProductsController@index'
+    ]);
+    Route::get('/get/{id}',[
+        'uses'=>'SupplierProductsController@show'
+    ]);
+    Route::post('/create',[
+        'uses'=>'SupplierProductsController@store'
+    ]);
+});
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
