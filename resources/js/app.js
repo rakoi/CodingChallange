@@ -11,7 +11,7 @@ import { TablePlugin,BootstrapVue} from 'bootstrap-vue'
 import VueSidebarMenu from 'vue-sidebar-menu'
 Vue.use(TablePlugin)
 Vue.use(BootstrapVue)
-
+Vue.component('spinner',require('vue-simple-spinner'));
 
 window.Vue = require('vue');
 Vue.use(VueRouter)
@@ -28,6 +28,8 @@ Vue.component('products', require('./components/products.vue').default);
 Vue.component('top', require('./components/Layout/myHeader.vue').default);
 Vue.component('deletemodal', require('./components/DeleteModal.vue').default);
 Vue.component('home', require('./components/Home.vue').default);
+Vue.component('Login', require('./components/Login.vue').default);
+Vue.component('Register', require('./components/Register.vue').default);
 
 const app = new Vue({
     el: '#app',

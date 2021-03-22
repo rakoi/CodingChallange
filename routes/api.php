@@ -100,3 +100,11 @@ Route::prefix('supplier_products')->group(function(){
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::prefix('auth')->group(function(){
+    Route::post('login','AppController@login');
+    Route::post('logout','AppController@logout');
+    Route::post('register','AppController@register');
+    Route::get('init','AppController@init');
+});

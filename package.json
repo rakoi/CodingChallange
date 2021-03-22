@@ -29,6 +29,7 @@
         "toastr": "^2.1.4",
         "vue-router": "^3.5.1",
         "vue-sidebar-menu": "^4.7.4",
+        "vue-simple-spinner": "^1.2.10",
         "vue-toastr": "^2.1.2"
     }
 }

@@ -1,11 +1,6 @@
 <template>
-    <div>
-    
-      <div id="modals">
-      <deletemodal/>
-        </div>
-      
-       <products/>
+    <div id="home">
+    <h1>HOME</h1>
     </div>
 </template>
 <script>
