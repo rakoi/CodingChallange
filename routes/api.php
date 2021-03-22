@@ -20,6 +20,10 @@ Route::prefix('products')->group(function(){
     Route::get('/delete/{id}',[
         'uses'=>'ProductController@destroy'
     ]);
+
+    Route::get('/searchProduct/{name}',[
+        'uses'=>'ProductController@search'
+    ]);
 });
 
 
@@ -57,6 +61,7 @@ Route::prefix('supplier')->group(function(){
     Route::post('/update/{id}',[
         'uses'=>'SupplierController@update'
     ]);
+   
     Route::get('/delete/{id}',[
         'uses'=>'SupplierController@destroy'
     ]);
@@ -72,6 +77,9 @@ Route::prefix('orders_detail')->group(function(){
     ]);
     Route::post('/create',[
         'uses'=>'OrderDetailsController@store'
+    ]);
+    Route::get('/delete/{id}',[
+        'uses'=>'OrderDetailsController@destroy'
     ]);
 });
 

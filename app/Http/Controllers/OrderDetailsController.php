@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Order_detail;
+use App\Order;
+use Carbon\Carbon;
 class OrderDetailsController extends Controller
 {
     /**
@@ -36,10 +38,16 @@ class OrderDetailsController extends Controller
     public function store(Request $request)
     {
         //
+        $order=new Order();
         $orderDetail =new Order_detail();
-        $orderDetail->order_id=$request->order_id;
-        $orderDetail->product_id=$request->product_id;
-        $orderDetail->save();
+        $order_id=Order::max('id')+1;
+
+        $orderDetail->order_id=$order_id;
+        $orderDetail->product_id=$request->productid;
+        $orderDetail=$orderDetail->save();
+        $saveOrder=new Order();
+        $saveOrder->order_number=Order_detail::max('id')+1;
+        $saveOrder->save();
     }
 
     /**
@@ -85,6 +93,8 @@ class OrderDetailsController extends Controller
      */
     public function destroy($id)
     {
-        //
+         Order_detail::where('id',$id)->update(['deleted_at'=>Carbon::now()]);
+         Order::where('order_number',$id)->update([
+             'deleted_at'=>Carbon::now()]);
     }
 }

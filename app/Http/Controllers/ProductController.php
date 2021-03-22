@@ -15,7 +15,7 @@ class ProductController extends Controller
     public function index()
     {
        
-        return Product::whereNull('deleted_at')->paginate(10);
+        return Product::whereNull('deleted_at')->get();
     }
 
     /**
@@ -26,13 +26,13 @@ class ProductController extends Controller
     public function create(Request $request)
     {
         //
-        $product=new Product;
+          $product=new Product;
         $product->name=$request->name;
         $product->description=$request->description;
         $product->quantity=$request->quantity;
-       
         $product->save();
 
+        return $product;
     }
 
     /**
@@ -110,5 +110,10 @@ class ProductController extends Controller
         $product->deleted_at=Carbon::now();
         $product->save();
         return $product;
+    }
+    public function search(Request $request){
+      
+        $wildcard="%$request->name%";
+        return Product::where('name','like',$wildcard)->get();
     }
 }
